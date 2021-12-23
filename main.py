@@ -38,9 +38,22 @@ def work_with_main_page(url, headers):
             url_game = lst[i + 2]
             if 'channel' in url_game:
                 count += 1
-                urls.append(url+url_game)
+                # urls.append('youtube.com/channel'+url_game+'/live')
+                urls.append(url+url_game+'/live')
                 # print(url+url_game)
+    # for i in range(len(urls)):
 
+
+    print(urls[0])
+    game = requests.get(urls[0], headers=headers)
+    with open('data/GTA.html', 'w', encoding='utf-8') as file:
+        file.write(game.text)
+    game_soup = BeautifulSoup(game.text, 'lxml')
+    print(game_soup)
+    game_page = game_soup.find_all('a', id='video-title')
+    print(game_page)
+    for j in game_page:
+        print(j.text)
 
 
 
