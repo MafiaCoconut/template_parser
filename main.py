@@ -18,40 +18,32 @@ def get_data(url, headers):
 
 
 def work_with_main_page(url, headers):
-    # with open('data/project.html', encoding='utf-8') as file:
-    #     page = BeautifulSoup(file.read(), 'lxml')
+    with open('data/project.html', encoding='utf-8') as file:
+        soup = BeautifulSoup(file.read(), 'lxml')
     # print(page)
 
-    page = requests.get(url)
-    soup = BeautifulSoup(page.text, 'html.parser')
+    # page = requests.get(url, headers=headers)
+    # soup = BeautifulSoup(page.text, 'lxml')
+
     scripts = soup.find('body').find_all('script')
-    for i in scripts:
-        z = i.text
-        if 'ytInitialData' in z:
-            print(z)
-            # print('111111111111111111')
-            # print(z['gameCardRenderer'])
-            # with open('data/game.json', 'w', encoding='utf-8') as file:
-                # file.write(json.load(str(i)))
-                # json.dump(i, file,indent=4, ensure_ascii=False)
-            # print(i.find('ytInitialData'))
+    items = scripts[13]
+    x = items.text
+    lst = x.split('"')
+    # print(lst)
+
+    urls = []
+    count = 0
+    for i in range(len(lst)):
+        if lst[i] == 'url':
+            url_game = lst[i + 2]
+            if 'channel' in url_game:
+                count += 1
+                urls.append(url+url_game)
+                # print(url+url_game)
 
 
-    # print(soup)
-    #games = soup.find_all('a', class_='yt-simple-endpoint style-scope ytd-game-details-renderer')
-    #x = soup.find('contents')
-    #print(x)
-    # games = soup.find('ytd-game-card-renderer')
-    # for game in games:
-    #     print(game['href'])
-    # print(games["gameCardRenderer"])
-    # airphones = soup.find_all('a', href=True, class_='model-short-title no-u')
-    #
-    # item = airphones[0]
-    # name = item.text
-    # url_item = 'https://www.e-katalog.ru' + item['href']
-    # print(f"{name}, {url_item}")
-    # item_page = requests.get(url_item)
+
+
 
 
 def main():
