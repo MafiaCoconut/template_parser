@@ -5,18 +5,17 @@
 2) Отрываем папку где будет находится эта программа
 3) В консоль пишем:
 ---------
-
       git clone https://github.com/MafiaCoconut/template_parser.git
-
+      
 4) Перейти через File/Open в папку template_parser 
-
 ---------
-
       pip install virtualenv
       virtualenv venv
       venv\Scripts\activate.bat
-      pip install -r requirements.txt
       
+5) Закрываем консоль и открываем ещё раз, чтобы перед началом строки появилось (venv)
+---------
+      pip install -r requirements.txt
 
 Инструкция по работе с проектом:
 1) В функции main меняем url на тот, над которым вы будете работать
@@ -28,3 +27,4 @@
 2) В файле test.py и test.json показано как работает json и словари
 3) Все данные сохраняем в папку data, для этого когда открываете файл, прописываете 'data/' перед названием файла.
 Пример: 'data/test.txt'
+
